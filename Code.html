@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The USELESS Website</title>
+  <style>
+    body {
+      text-align: center;
+      margin-top: 100px;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      transition: background-color 0.5s;
+    }
+    
+    h1 {
+      font-size: 24px;
+      color: #333;
+    }
+    
+    .button {
+      padding: 10px 20px;
+      background-color: #ccc;
+      border: none;
+      color: #333;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 10px;
+    }
+    
+    .flash {
+      animation: flashAnimation 0.00001s infinite;
+    }
+    
+    @keyframes flashAnimation {
+      0% { background-color: inherit; }
+      50% { background-color: var(--randomColor); }
+    }
+  </style>
+  <script>
+    function getRandomHexCode() {
+      var letters = '0123456789ABCDEF';
+      var hexCode = '#';
+      for (var i = 0; i < 6; i++) {
+        hexCode += letters[Math.floor(Math.random() * 16)];
+      }
+      return hexCode;
+    }
+    
+    function flashColors() {
+      var body = document.querySelector('body');
+      body.style.setProperty('--randomColor', getRandomHexCode());
+      body.classList.remove('flash');
+      setTimeout(function() {
+        body.classList.add('flash');
+      }, 10);
+    }
+    
+    function changeTextColor() {
+      var heading = document.querySelector('h1');
+      var textColor = getRandomHexCode();
+      heading.style.color = textColor;
+    }
+    
+    function changeBackgroundColor() {
+      var backgroundColor = getRandomHexCode();
+      document.body.style.backgroundColor = backgroundColor;
+    }
+    
+    function changeBoth() {
+      changeTextColor();
+      changeBackgroundColor();
+    }
+  </script>
+</head>
+<body>
+  <h1>Welcome to the USELESS Website</h1>
+  
+  <button class="button" onclick="flashColors()">WARNING: Epilepsy</button>
+  
+  <button class="button" onclick="changeTextColor()">Change Text Color</button>
+  <button class="button" onclick="changeBackgroundColor()">Change Background Color</button>
+  <button class="button" onclick="changeBoth()">Change Both</button>
+</body>
+</html>
